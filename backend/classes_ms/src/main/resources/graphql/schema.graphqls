@@ -1,0 +1,15 @@
+type Query {
+    classes : [Classe]
+    getClasseById(id: Int): Classe
+}
+
+type Mutation {
+    createClasse (name : String) : Classe
+    updateClasse(id: Int, name : String): Classe
+    deleteClasse(id: Int): Boolean
+}
+
+type Classe {
+    id : ID!
+    name : String
+}
