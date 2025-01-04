@@ -46,7 +46,7 @@ function MainLayout() {
           {
             label: "Matières",
             icon: <FontAwesomeIcon icon={faBook} className="h-5 w-5" />, 
-            path: "/courses"
+            path: "/matieres"
           },
           {
             label: "Paramètres",

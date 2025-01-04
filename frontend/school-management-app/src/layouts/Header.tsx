@@ -8,8 +8,10 @@ import {
 } from "@heroicons/react/24/outline";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {useTheme} from "../utils/hooks/useTheme";
+import { useTheme } from "../utils/hooks/useTheme";
 import { confirmPopup } from "@/utils/helpers";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 interface HeaderProps {
   isCollapsed: boolean;
@@ -30,7 +32,6 @@ function Header({ isCollapsed }: HeaderProps) {
       }  flex items-center justify-between px-6 border-b border-dividergray backdrop-blur-lg bg-transparent z-10`}
     >
       <div className="flex items-center space-x-2">
-
         <button onClick={() => navigate(-1)} className="btn btn-text">
           <ArrowLeftIcon className="size-5 text-black dark:text-white" />
         </button>
@@ -84,11 +85,9 @@ function Header({ isCollapsed }: HeaderProps) {
         <Menu>
           <MenuButton className="flex items-center hover:cursor-pointer hover:bg-dividergray p-1 rounded-lg">
             <div className="flex items-center space-x-2">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4D08AQE0CXu4hnoe7g/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1646754728586?e=2147483647&v=beta&t=qLLnAorOkCKvbPAVBJgmyYhxQUt6YWeU0qJRV5cCgYQ"
-                alt="profile"
-                className="w-7 h-7 rounded-full object-cover"
-              />{" "}
+              <div className="flex justify-center items-center rounded-full w-7 h-7 bg-dividergray text-gray-500">
+                <FontAwesomeIcon icon={faUser} />
+              </div>
               <span className="text-sm text-black dark:text-white">Admin</span>
             </div>
             <ChevronDownIcon className="size-4 text-black dark:text-white" />
@@ -117,12 +116,11 @@ function Header({ isCollapsed }: HeaderProps) {
               <span
                 className="text block cursor-pointer data-[focus]:bg-dividergray px-2 py-1 rounded-md"
                 onClick={() => {
-                  confirmPopup()
-                  .then((response)=>{
+                  confirmPopup().then((response) => {
                     if (response.isConfirmed) {
                       navigate("/login");
                     }
-                  })
+                  });
                 }}
               >
                 Déconnexion

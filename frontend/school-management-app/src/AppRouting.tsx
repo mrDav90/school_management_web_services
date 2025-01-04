@@ -9,7 +9,11 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import ManagePassword from "./pages/ManagePassword";
-import Details from "./pages/Details";
+import StudentDetails from "./pages/StudentDetails";
+import ProfesseurDetails from "./pages/ProfesseurDetails";
+import ClasseDetails from "./pages/ClasseDetails";
+import Matieres from "./pages/Matieres";
+import MatiereDetails from "./pages/MatiereDetails";
 
 
 export const router = createBrowserRouter([
@@ -34,17 +38,41 @@ export const router = createBrowserRouter([
             },
             {
                 path : "classes",
-                element : <Classes />,
                 handle: {
-                    breadcrumb: "Liste de classes",
+                    breadcrumb: "Classes",
                 },
+                children : [
+                    {
+                        index : true,
+                        element : <Classes />,
+                    },
+                    {
+                        path : "details/:id",
+                        element : <ClasseDetails />,
+                        handle: {
+                            breadcrumb: ({ id } : { id : string}) => `Détails Classe ${id}`,
+                        },
+                    },
+                ]
             },
             {
                 path : "professors",
-                element : <Professors />,
                 handle: {
                     breadcrumb: "Professeurs",
                 },
+                children : [
+                    {
+                        index : true,
+                        element : <Professors />,
+                    },
+                    {
+                        path : "details/:id",
+                        element : <ProfesseurDetails />,
+                        handle: {
+                            breadcrumb: ({ id } : { id : string}) => `Détails Professeur ${id}`,
+                        },
+                    },
+                ]
             },
             {
                 path : "students",
@@ -58,9 +86,28 @@ export const router = createBrowserRouter([
                     },
                     {
                         path : "details/:id",
-                        element : <Details />,
+                        element : <StudentDetails />,
                         handle: {
                             breadcrumb: ({ id } : { id : string}) => `Détails Etudiant ${id}`,
+                        },
+                    },
+                ]
+            },
+            {
+                path : "matieres",
+                handle: {
+                    breadcrumb: "Matières",
+                },
+                children : [
+                    {
+                        index : true,
+                        element : <Matieres />,
+                    },
+                    {
+                        path : "details/:id",
+                        element : <MatiereDetails />,
+                        handle: {
+                            breadcrumb: ({ id } : { id : string}) => `Détails Matière ${id}`,
                         },
                     },
                 ]

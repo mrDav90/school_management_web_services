@@ -1,65 +1,94 @@
+import { postActions, putActions } from "@/actions/actions";
+import { endpoints } from "@/constants/endpoints.constants";
+import { Etudiant, Gender } from "@/interfaces/interfaces";
 import { Select } from "@headlessui/react";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type NewStudentProps = {
-  record : any;
+  record: any;
   onClose: () => void;
-  onRefresh? : () => void;
-}
-function NewStudent({record , onClose , onRefresh} : NewStudentProps) {
+  onRefresh?: () => void;
+};
+function NewStudent({ record, onClose, onRefresh }: NewStudentProps) {
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
-  const onSubmit = () => {
-    alert("submitted");
-    onClose();
-    onRefresh?.();
+  } = useForm<Etudiant>();
+  const onSubmit: SubmitHandler<Etudiant> = async (data: any) => {
+    if (record === null) {
+      await postActions(endpoints.etudiants.ADD, data).then(() => {
+        toast.success("Nouvel étudiant ajouté avec succès");
+        onClose();
+        onRefresh?.();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+      })
+      ;
+    } else {
+      await putActions(endpoints.etudiants.UPDATE(record?.id), data).then(() => {
+        toast.success("Etudiant mise à jour avec succès");
+        onClose();
+        onRefresh?.();
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error(err.message);
+      })
+      ;
+    }
+    
   };
 
   useEffect(() => {
     if (record && record !== null) {
       reset(record);
     }
-  },[record])
+  }, [record]);
 
   return (
-    <div className="bg-transparent px-1" >
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" >
+    <div className="bg-transparent px-1">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="w-full grid grid-cols-3 space-x-4">
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="example">
               Nom
             </label>
             <input
-              defaultValue="test"
-              {...register("name")}
-              className="input"
+              {...register("lastName", { required: true })}
+              className={errors.lastName ? "input-error" : "input"}
             />
+            {errors.lastName && (
+              <span className="text-red-500">Ce champ est obligatoire</span>
+            )}
           </div>
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="example">
-              Type
+              Prénoms
             </label>
             <input
-              defaultValue="test"
-              {...register("type")}
-              className="input"
+              {...register("firstName", { required: true })}
+              className={errors.firstName ? "input-error" : "input"}
             />
+            {errors.firstName && (
+              <span className="text-red-500">Ce champ est obligatoire</span>
+            )}
           </div>
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="exampleRequired">
-              Task
+              Email
             </label>
             <input
-              {...register("exampleRequired", { required: true })}
-              className={errors.exampleRequired ? "input-error" : "input"}
+              {...register("email", { required: true })}
+              className={errors.email ? "input-error" : "input"}
             />
-            {errors.exampleRequired && (
-              <span className="text-red-500">This field is required</span>
+            {errors.email && (
+              <span className="text-red-500">Ce champ est obligatoire</span>
             )}
           </div>
         </div>
@@ -67,48 +96,40 @@ function NewStudent({record , onClose , onRefresh} : NewStudentProps) {
         <div className="w-full grid grid-cols-3 space-x-4">
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="example">
-              Example
+              Téléphone
             </label>
-            <input
-              defaultValue="test"
-              {...register("example")}
-              className="input"
-            />
+            <input {...register("phone")} className="input" />
           </div>
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="example">
-              Example
+              Genre
             </label>
-            <input
-              defaultValue="test"
-              {...register("example")}
-              className="input"
-            />
+            <Select
+              className="border data-[hover]:shadow data-[focus]:bg-blue-100"
+              aria-label="Project status"
+              {...register("gender")}
+            >
+              <option value={Gender.MALE}> {Gender.MALE.toString()} </option>
+              <option value={Gender.FEMALE}>
+                {" "}
+                {Gender.FEMALE.toString()}{" "}
+              </option>
+            </Select>
           </div>
           <div className="flex flex-col">
             <label className="label mb-2" htmlFor="exampleRequired">
-              Example required
+              Date de naissance
             </label>
             <input
-              {...register("exampleRequired", { required: true })}
-              className={errors.exampleRequired ? "input-error" : "input"}
+              {...register("dateOfBirth", { required: true })}
+              type="date"
+              className={errors.dateOfBirth ? "input-error" : "input"}
             />
-            {errors.exampleRequired && (
-              <span className="text-red-500">This field is required</span>
+            {errors.dateOfBirth && (
+              <span className="text-red-500">Veuillez entrer la date</span>
             )}
           </div>
         </div>
-
-        <Select
-          name="status"
-          className="border data-[hover]:shadow data-[focus]:bg-blue-100"
-          aria-label="Project status"
-        >
-          <option value="active">Active</option>
-          <option value="paused">Paused</option>
-          <option value="delayed">Delayed</option>
-          <option value="canceled">Canceled</option>
-        </Select>
 
         <div className="flex w-full justify-center items-center space-x-4 mt-4">
           <button className="btn btn-ghost" type="reset">

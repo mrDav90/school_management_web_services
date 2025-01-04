@@ -12,7 +12,7 @@ mongoose
   .connect(process.env.DATABASE_ACCESS)
   .then(() => console.log("Database is connected successfully"))
   .catch((error) => console.log(error));
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/api", routes);

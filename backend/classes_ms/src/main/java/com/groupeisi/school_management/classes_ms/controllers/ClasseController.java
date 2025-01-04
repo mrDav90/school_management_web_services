@@ -41,9 +41,13 @@ public class ClasseController {
     }
 
     @MutationMapping
-    public boolean deleteClasse(@Argument int id) {
-        classeService.deleteClasse(id);
-        return true;
+    public Classe deleteClasse(@Argument int id) {
+        Classe classe = new Classe();
+        classe.setId(id);
+        if (classeService.deleteClasse(id)) {
+            return classe;
+        }
+        return null;
     }
 
 }

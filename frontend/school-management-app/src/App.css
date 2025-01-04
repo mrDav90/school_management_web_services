@@ -36,16 +36,17 @@
 
 ::-webkit-scrollbar {
   @apply w-[6px];
+  @apply h-[6px];
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dividergray;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-primaryColor-400 rounded-lg;
+  @apply bg-dividergray rounded-lg;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-primaryColor-500;
+  @apply bg-dividergray;
 }

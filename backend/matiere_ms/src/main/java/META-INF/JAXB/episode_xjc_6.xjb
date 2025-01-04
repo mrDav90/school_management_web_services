@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
+Voir https://eclipse-ee4j.github.io/jaxb-ri 
+Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+Généré le : 2025.01.02 à 04:09:02 PM UTC 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://groupeisi.com/matiere-web-service">
+    <schemaBindings map="false">
+      <package name="com.groupeisi.matiere_web_service"/>
+    </schemaBindings>
+    <bindings scd="tns:getMatieresRequest">
+      <class ref="com.groupeisi.matiere_web_service.GetMatieresRequest"/>
+    </bindings>
+    <bindings scd="tns:getMatieresResponse">
+      <class ref="com.groupeisi.matiere_web_service.GetMatieresResponse"/>
+    </bindings>
+    <bindings scd="~tns:Matiere">
+      <class ref="com.groupeisi.matiere_web_service.Matiere"/>
+    </bindings>
+    <bindings scd="tns:getMatiereRequest">
+      <class ref="com.groupeisi.matiere_web_service.GetMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:getMatiereResponse">
+      <class ref="com.groupeisi.matiere_web_service.GetMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:createMatiereRequest">
+      <class ref="com.groupeisi.matiere_web_service.CreateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:createMatiereResponse">
+      <class ref="com.groupeisi.matiere_web_service.CreateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:updateMatiereRequest">
+      <class ref="com.groupeisi.matiere_web_service.UpdateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:updateMatiereResponse">
+      <class ref="com.groupeisi.matiere_web_service.UpdateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:deleteMatiereRequest">
+      <class ref="com.groupeisi.matiere_web_service.DeleteMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:deleteMatiereResponse">
+      <class ref="com.groupeisi.matiere_web_service.DeleteMatiereResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+

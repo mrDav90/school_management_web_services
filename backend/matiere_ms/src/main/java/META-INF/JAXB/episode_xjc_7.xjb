@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <!--
+
+Ce fichier a été généré par Eclipse Implementation of JAXB, v3.0.0 
+Voir https://eclipse-ee4j.github.io/jaxb-ri 
+Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
+Généré le : 2025.01.03 à 09:58:00 PM UTC 
+
+  -->
+  <bindings scd="x-schema::tns" xmlns:tns="http://groupeisi.com/">
+    <schemaBindings map="false">
+      <package name="com.groupeisi"/>
+    </schemaBindings>
+    <bindings scd="tns:getMatieresRequest">
+      <class ref="com.groupeisi.GetMatieresRequest"/>
+    </bindings>
+    <bindings scd="tns:getMatieresResponse">
+      <class ref="com.groupeisi.GetMatieresResponse"/>
+    </bindings>
+    <bindings scd="~tns:Matiere">
+      <class ref="com.groupeisi.Matiere"/>
+    </bindings>
+    <bindings scd="tns:getMatiereRequest">
+      <class ref="com.groupeisi.GetMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:getMatiereResponse">
+      <class ref="com.groupeisi.GetMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:createMatiereRequest">
+      <class ref="com.groupeisi.CreateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:createMatiereResponse">
+      <class ref="com.groupeisi.CreateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:updateMatiereRequest">
+      <class ref="com.groupeisi.UpdateMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:updateMatiereResponse">
+      <class ref="com.groupeisi.UpdateMatiereResponse"/>
+    </bindings>
+    <bindings scd="tns:deleteMatiereRequest">
+      <class ref="com.groupeisi.DeleteMatiereRequest"/>
+    </bindings>
+    <bindings scd="tns:deleteMatiereResponse">
+      <class ref="com.groupeisi.DeleteMatiereResponse"/>
+    </bindings>
+  </bindings>
+</bindings>
+

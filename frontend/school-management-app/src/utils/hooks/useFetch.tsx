@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { getActions } from "@/actions/actions";
 
 export function useFetch(url : string) {
-    const [response , setResponse] = useState(null);
+    const [response , setResponse] = useState<any>(null);
     const [error,  setError] = useState(false);
     const [isLoading,  setIsLoading] = useState(false);
     const [refetch , setRefetch] = useState(0);

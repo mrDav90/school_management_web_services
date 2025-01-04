@@ -13,19 +13,27 @@ spring:
       discovery:
         locator:
           enabled: true
+          lower-case-service-id: true
       routes:
         - id: etudiant_ms
           uri: http://localhost:8081
           predicates:
             - Path=/api/**
-        - id: professeur_ms
+        - id: matiere_ms
+          uri: http://localhost:8082
+          predicates:
+            - Path=/ws/**
+        - id: PROFESSEUR_MS
           uri: http://localhost:8083
           predicates:
-            - Path=/api/**
+            - Path=/professeur_ms/api/**
+          filters:
+            - StripPrefix=1
         - id: classes_ms
           uri: http://localhost:8084
           predicates:
-            - Path=/graphiql/**
+            - Path=/graphql/**
+
 eureka:
   instance:
     prefer-ip-address: true

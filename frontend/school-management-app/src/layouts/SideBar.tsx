@@ -16,8 +16,10 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronDownIcon,
-  ChevronUpDownIcon
+  ChevronUpDownIcon,
 } from "@heroicons/react/24/outline";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface SideBarProps {
   setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
@@ -49,7 +51,11 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="btn btn-text absolute -right-2 top-4 rounded-full border border-dividergray bg-white dark:bg-relevantDark"
         >
-          {isCollapsed ? <ChevronDoubleRightIcon className="size-3 text-black dark:text-white" /> : <ChevronDoubleLeftIcon className="size-3 text-black dark:text-white" />}
+          {isCollapsed ? (
+            <ChevronDoubleRightIcon className="size-3 text-black dark:text-white" />
+          ) : (
+            <ChevronDoubleLeftIcon className="size-3 text-black dark:text-white" />
+          )}
         </button>
       </div>
       <ul className="py-4 px-2 overflow-x-hidden overflow-y-auto h-[80vh] space-y-2">
@@ -61,9 +67,9 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
                   <div
                     key={index}
                     className={`w-full h-10  rounded-lg px-2 flex items-center justify-center text-gray-700 dark:text-gray-200  hover:bg-dividergray hover:cursor-pointer space-x-2 ${isPathActive(
-                      item.path as string
-                    )} ? "bg-dividergray" : ""
-                }`}
+                          item.path as string
+                        )} ? "bg-dividergray" : ""
+                    }`}
                   >
                     <span
                       className={`${
@@ -115,6 +121,7 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
               </Popover>
             ) : (
               <Disclosure
+                key={index}
                 as="div"
                 defaultOpen={false}
                 className="transition-all duration-300 ease-in-out"
@@ -201,7 +208,9 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
             >
               <span
                 className={`${
-                  isPathActive(item.path as string) ? " text-primaryColor-500" : ""
+                  isPathActive(item.path as string)
+                    ? " text-primaryColor-500"
+                    : ""
                 }`}
               >
                 {item.icon}
@@ -223,13 +232,11 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
       </ul>
       <div className="h-auto py-1 px-2">
         <Menu>
-          <MenuButton className="flex items-center justify-between w-full hover:cursor-pointer hover:bg-dividergray py-1 px-2 rounded-lg">
+          <MenuButton className={`flex items-center ${isCollapsed ? "justify-center" : "justify-between"} w-full hover:cursor-pointer hover:bg-dividergray py-1 px-2 rounded-lg`}>
             <div className="flex justify-center items-center space-x-2">
-              <img
-                src="https://media.licdn.com/dms/image/v2/D4D08AQE0CXu4hnoe7g/croft-frontend-shrinkToFit1024/croft-frontend-shrinkToFit1024/0/1646754728586?e=2147483647&v=beta&t=qLLnAorOkCKvbPAVBJgmyYhxQUt6YWeU0qJRV5cCgYQ"
-                alt="profile"
-                className="w-8 h-8 rounded-full object-cover"
-              />
+              <div className="flex justify-center items-center rounded-full w-7 h-7 bg-dividergray text-gray-500">
+                <FontAwesomeIcon icon={faUser} />
+              </div>
               {!isCollapsed && (
                 <div className="flex flex-col items-start justify-center">
                   <span className="text-sm text-black dark:text-white">
@@ -245,7 +252,7 @@ function SideBar({ isCollapsed, setIsCollapsed, menu }: SideBarProps) {
           </MenuButton>
           <MenuItems
             anchor="top"
-            className="min-w-28 p-2 rounded-lg bg-white border shadow-xl border-dividergray dark:bg-relevantDark backdrop-blur-sm"
+            className="z-50 min-w-28 p-2 rounded-lg bg-white border shadow-xl border-dividergray dark:bg-relevantDark backdrop-blur-sm"
           >
             <MenuItem>
               <span
