@@ -19,20 +19,16 @@ function NewMatiere({ record, onClose, onRefresh }: NewMatiereProps) {
 
   const onSubmit: SubmitHandler<Classe> = async (data: any) => {
     if (record === null) {
-      await createMatiere(data).then((response) => {
-        if (response?.data) {
-          toast.success(`Matière ajouté avec succès`);
-          onClose();
-          onRefresh?.();
-        }
+      await createMatiere(data).then(() => {
+        toast.success(`Matière ajouté avec succès`);
+        onClose();
+        onRefresh?.();
       });
     } else {
-      await updateMatiere(record.id, data).then((response) => {
-        if (response?.data) {
-          toast.success(`Matière mise à jour avec succès`);
-          onClose();
-          onRefresh?.();
-        }
+      await updateMatiere(record.id, data).then(() => {
+        toast.success(`Matière mise à jour avec succès`);
+        onClose();
+        onRefresh?.();
       });
     }
   };

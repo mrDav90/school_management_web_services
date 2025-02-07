@@ -75,7 +75,7 @@ services:
       DB_USERNAME: david
       DB_PASSWORD: Passer1234@
     ports:
-      - "8085:8085"
+      - "8085:8082"
     depends_on:
       matiere_ms_db:
         condition: service_healthy
