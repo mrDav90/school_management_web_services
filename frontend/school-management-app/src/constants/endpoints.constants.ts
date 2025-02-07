@@ -7,10 +7,15 @@ export const endpoints = {
         DELETE : (id : number)=>  `/api/v1/etudiant/${id}`
     },
     professeurs : {
-        LIST : "/professeur_ms/api/v1/professeurs",
-        ADD : "/professeur_ms/api/v1/professeur",
-        DETAIL : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`,
-        UPDATE : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`,
-        DELETE : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`
+        // LIST : "/professeur_ms/api/v1/professeurs",
+        // ADD : "/professeur_ms/api/v1/professeur",
+        // DETAIL : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`,
+        // UPDATE : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`,
+        // DELETE : (id : string)=> `/professeur_ms/api/v1/professeur/${id}`
+        LIST : "/api/v1/professeurs",
+        ADD : "/api/v1/professeur",
+        DETAIL : (id : string)=> `/api/v1/professeur/${id}`,
+        UPDATE : (id : string)=> `/api/v1/professeur/${id}`,
+        DELETE : (id : string)=> `/api/v1/professeur/${id}`
     }
 }

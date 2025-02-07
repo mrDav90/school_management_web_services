@@ -52,9 +52,11 @@ function Matieres() {
     confirmPopup().then( async(res) => {
       if (res.isConfirmed) {
         await deleteMatiere(Number(id))
-        .then(() => {
-          toast.success("Matière supprimée avec succès!");
-          onRefresh();
+        .then((response) => {
+          if (response?.data) {
+            toast.success("Matière supprimée avec succès");
+            onRefresh();
+          }
         })
       }
     });

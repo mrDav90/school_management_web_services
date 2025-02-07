@@ -19,10 +19,12 @@ function Professors() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [record, setRecord] = useState(null);
-  const { response, isLoading , onRefresh } = useFetch(endpoints.professeurs.LIST);
+  const { response, isLoading, onRefresh } = useFetch(
+    endpoints.professeurs.LIST
+  );
   const [professeurs, setProfesseurs] = useState<Professeur[]>([]);
   const [professeursCopy, setProfesseursCopy] = useState<Professeur[]>([]);
-  
+
   useEffect(() => {
     if (response) {
       setProfesseurs(response.data);
@@ -43,9 +45,11 @@ function Professors() {
   const onDelete = (id: string) => {
     confirmPopup().then((res) => {
       if (res.isConfirmed) {
-        deleteActions(endpoints.professeurs.DELETE(id)).then(() => {
-          toast.success("Elément supprimé avec succès");
-          onRefresh();
+        deleteActions(endpoints.professeurs.DELETE(id)).then((response) => {
+          if (response?.data) {
+            toast.success("Elément supprimé avec succès");
+            onRefresh();
+          }
         });
       }
     });
@@ -94,7 +98,15 @@ function Professors() {
 
   return (
     <div>
-      <DataTable isLoading={isLoading} columns={COLUMNS} onAdd={onAdd} dataSource={professeurs} dataSourceCopy={professeursCopy} setDataSourceCopy={setProfesseursCopy} searchInputs={["firstName","lastName","email"]} />
+      <DataTable
+        isLoading={isLoading}
+        columns={COLUMNS}
+        onAdd={onAdd}
+        dataSource={professeurs}
+        dataSourceCopy={professeursCopy}
+        setDataSourceCopy={setProfesseursCopy}
+        searchInputs={["firstName", "lastName", "email"]}
+      />
 
       <Modal
         open={open}

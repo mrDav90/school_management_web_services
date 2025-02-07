@@ -19,17 +19,21 @@ function NewProfesseur({ record, onClose, onRefresh }: NewProfesseurProps) {
   } = useForm<Professeur>();
   const onSubmit: SubmitHandler<Professeur> = async (data: any) => {
     if (record === null) {
-      await postActions(endpoints.professeurs.ADD, data).then(() => {
-        toast.success("Professeur ajouté avec succès");
-        onClose();
-        onRefresh?.();
+      await postActions(endpoints.professeurs.ADD, data).then((response) => {
+        if (response?.data) {
+          toast.success("Professeur ajouté avec succès");
+          onClose();
+          onRefresh?.();
+        }
       });
     } else {
       await putActions(endpoints.professeurs.UPDATE(record?._id), data).then(
-        () => {
-          toast.success("Professeur mise à jour avec succès");
-          onClose();
-          onRefresh?.();
+        (response) => {
+          if (response?.data) {
+            toast.success("Professeur mise à jour avec succès");
+            onClose();
+            onRefresh?.();
+          }
         }
       );
     }

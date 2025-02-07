@@ -20,10 +20,10 @@ app.get("/status", (req, res) => {
     res.status(200).send("Service is up and running");
 });
 app.listen(port, console.log(`Server is running well on ${port}`));
-client.start((error) => {
-  if (error) {
-    console.error("Erreur lors de l’enregistrement sur Eureka:", error);
-  } else {
-    console.log("Service enregistré sur Eureka avec succès!");
-  }
-});
+// client.start((error) => {
+//   if (error) {
+//     console.error("Erreur lors de l’enregistrement sur Eureka:", error);
+//   } else {
+//     console.log("Service enregistré sur Eureka avec succès!");
+//   }
+// });

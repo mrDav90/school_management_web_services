@@ -20,29 +20,32 @@ function NewStudent({ record, onClose, onRefresh }: NewStudentProps) {
   } = useForm<Etudiant>();
   const onSubmit: SubmitHandler<Etudiant> = async (data: any) => {
     if (record === null) {
-      await postActions(endpoints.etudiants.ADD, data).then(() => {
-        toast.success("Nouvel étudiant ajouté avec succès");
-        onClose();
-        onRefresh?.();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.message);
-      })
-      ;
+      await postActions(endpoints.etudiants.ADD, data)
+        .then((response) => {
+          if (response?.data) {
+            toast.success("Nouvel étudiant ajouté avec succès");
+            onClose();
+            onRefresh?.();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message);
+        });
     } else {
-      await putActions(endpoints.etudiants.UPDATE(record?.id), data).then(() => {
-        toast.success("Etudiant mise à jour avec succès");
-        onClose();
-        onRefresh?.();
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.message);
-      })
-      ;
+      await putActions(endpoints.etudiants.UPDATE(record?.id), data)
+        .then((response) => {
+          if (response?.data) {
+            toast.success("Etudiant mise à jour avec succès");
+            onClose();
+            onRefresh?.();
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error(err.message);
+        });
     }
-    
   };
 
   useEffect(() => {

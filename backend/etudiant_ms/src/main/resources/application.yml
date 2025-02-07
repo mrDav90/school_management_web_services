@@ -3,9 +3,9 @@ spring:
     name: etudiant_ms
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/etudiant_db
-    username: root
-    password: Passer1234@
+    url: jdbc:mysql://${DB_HOST:localhost}:3306/${DB_NAME:etudiant_db}
+    username: ${DB_USERNAME:david}
+    password: ${DB_PASSWORD:Passer1234@}
   jpa:
     hibernate:
       ddl-auto: update
@@ -18,7 +18,7 @@ spring:
 
   cloud:
     discovery:
-      enabled: true
+      enabled: false
     config:
       enabled: false
 

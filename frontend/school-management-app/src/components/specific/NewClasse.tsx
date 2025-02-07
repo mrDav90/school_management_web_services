@@ -18,34 +18,39 @@ function NewClasse({ record, onClose, onRefresh }: NewClasseProps) {
     formState: { errors },
   } = useForm<Classe>();
 
-  const [createUser] = useMutation(CREATE_CLASSE);
-  const [updateUser] = useMutation(UPDATE_CLASSE);
-  
+  const [createClasse] = useMutation(CREATE_CLASSE);
+  const [updateClasse] = useMutation(UPDATE_CLASSE);
+
   const onSubmit: SubmitHandler<Classe> = async (data: any) => {
     if (record === null) {
-      await createUser({
-        variables : {
-            name: data?.name
-        }
-      })
-      .then((res: any) => {
-        toast.success(`Classe ${res?.data?.createClasse?.name} ajouté avec succès`);
-        onClose();
-        onRefresh?.();
-      });
-    } else {
-        await updateUser({
-            variables : {
-                id: record?.id,
-                name: data?.name
-            }
-        })
-        .then((res: any) => {
-          toast.success(`Classe ${res?.data?.createClasse?.name}  mise à jour avec succès`);
+      await createClasse({
+        variables: {
+          name: data?.name,
+        },
+      }).then((res: any) => {
+        if (res?.data) {
+          toast.success(
+            `Classe ${res?.data?.createClasse?.name} ajouté avec succès`
+          );
           onClose();
           onRefresh?.();
         }
-      );
+      });
+    } else {
+      await updateClasse({
+        variables: {
+          id: record?.id,
+          name: data?.name,
+        },
+      }).then((res: any) => {
+        if (res?.data) {
+          toast.success(
+            `Classe ${res?.data?.createClasse?.name}  mise à jour avec succès`
+          );
+          onClose();
+          onRefresh?.();
+        }
+      });
     }
   };
 

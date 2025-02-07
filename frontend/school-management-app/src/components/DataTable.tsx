@@ -78,7 +78,12 @@ function DataTable({
 
       <div className="rounded-md bg-white dark:bg-sideBarBgColorDark dark:text-white">
         {isLoading ? (
-          <Spinner />
+          <div className="h-[30vh] w-full flex justify-center items-center" >
+            <span><Spinner /> <span>Chargement...</span> </span>
+          </div>
+          
+        ) : dataSourceCopy.length === 0 ? (
+          <Empty />
         ) : (
           <table className="w-full  ">
             <thead className="rounded-lg">
@@ -106,7 +111,6 @@ function DataTable({
             </tbody>
           </table>
         )}
-        {dataSourceCopy.length === 0 && <Empty />}
       </div>
     </div>
   );

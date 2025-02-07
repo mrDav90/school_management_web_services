@@ -18,11 +18,11 @@ function Classes() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [record, setRecord] = useState(null);
-  const { loading, data,refetch } = useQuery(LIST_CLASSES);
+  const { loading, data, refetch } = useQuery(LIST_CLASSES);
   const [deleteClasse] = useMutation(DELETE_CLASSE);
   const [classes, setClasses] = useState<Classe[]>([]);
   const [classesCopy, setClassesCopy] = useState<Classe[]>([]);
-  
+
   useEffect(() => {
     if (data) {
       setClasses(data.listClasses);
@@ -41,16 +41,17 @@ function Classes() {
   };
 
   const onDelete = (id: number | string) => {
-    confirmPopup().then( async(res) => {
+    confirmPopup().then(async (res) => {
       if (res.isConfirmed) {
         await deleteClasse({
-          variables : {
-              id
+          variables: {
+            id,
+          },
+        }).then((response) => {
+          if (response?.data) {
+            toast.success("Classe supprimée avec succès");
+            refetch();
           }
-        })
-        .then(() => {
-          toast.success("Classe supprimée avec succès");
-          refetch();
         });
       }
     });
@@ -98,7 +99,15 @@ function Classes() {
 
   return (
     <div>
-      <DataTable isLoading={loading}  columns={COLUMNS} onAdd={onAdd} dataSource={classes} dataSourceCopy={classesCopy} setDataSourceCopy={setClassesCopy} searchInputs={["id","name"]} /> 
+      <DataTable
+        isLoading={loading}
+        columns={COLUMNS}
+        onAdd={onAdd}
+        dataSource={classes}
+        dataSourceCopy={classesCopy}
+        setDataSourceCopy={setClassesCopy}
+        searchInputs={["id", "name"]}
+      />
       <Modal
         open={open}
         onClose={() => setOpen(false)}

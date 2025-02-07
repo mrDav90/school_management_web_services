@@ -4,11 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdf9db31-7a93-4539-b44d-57d0cd6f53d4" name="Changes" comment="" />
+    <list default="true" id="fdf9db31-7a93-4539-b44d-57d0cd6f53d4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/etudiant_ms/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/etudiant_ms/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/AppRouting.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/AppRouting.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/actions/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/actions/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/constants/endpoints.constants.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/constants/endpoints.constants.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/interfaces/interfaces.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/interfaces/interfaces.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/layouts/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/layouts/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/layouts/SideBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/layouts/SideBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/pages/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/pages/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/school-management-app/src/utils/helpers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/school-management-app/src/utils/helpers.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -17,10 +34,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2qrimajMlpwoMA5mr70ajkA1F6H" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,7 +46,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/david/OneDrive/Bureau/M2GL/Web Services/tp/lab2/school_management/backend/etudiant_ms",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -51,6 +70,8 @@
       <option name="presentableId" value="Default" />
       <updated>1735427258055</updated>
       <workItem from="1735427260852" duration="134000" />
+      <workItem from="1738751017672" duration="140000" />
+      <workItem from="1738751345208" duration="178000" />
     </task>
     <servers />
   </component>

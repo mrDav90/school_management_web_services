@@ -1,0 +1,166 @@
+version: '3.9'
+
+services:
+
+  # discovery-service:
+  #   #image: mrdav90/discovery-service:1.0
+  #   build:
+  #     context: ./backend/discovery-service/
+  #     dockerfile: Dockerfile
+  #   container_name: discovery-service
+  #   restart: always
+  #   ports:
+  #     - "8761:8761"
+
+  # api-gateway:
+  #   #image: mrdav90/api-gateway:1.0
+  #   build:
+  #     context: ./backend/api-gateway/
+  #     dockerfile: Dockerfile
+  #   container_name: api-gateway
+  #   restart: always
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     discovery-service:
+  #       condition: service_started
+  #     etudiant_ms_db:
+  #       condition: service_healthy
+
+
+  etudiant_ms:
+    #image: mrdav90/etudiant_ms:1.0
+    build:
+      context: ./backend/etudiant_ms/
+      dockerfile: Dockerfile
+    container_name: etudiant_ms
+    restart: always
+    environment:
+      DB_HOST: etudiant_ms_db
+      DB_NAME: etudiant_db
+      DB_USERNAME: david
+      DB_PASSWORD: Passer1234@
+    ports:
+      - "8081:8081"
+    depends_on:
+      etudiant_ms_db:
+        condition: service_healthy
+
+  etudiant_ms_db:
+    image: mysql
+    container_name: etudiant_ms_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: etudiant_db
+      MYSQL_USER: david
+      MYSQL_PASSWORD: Passer1234@
+    ports:
+      - "3306:3306"
+    volumes:
+      - etudiant_ms_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+
+  matiere_ms:
+    #image: mrdav90/matiere_ms:1.0
+    build:
+      context: ./backend/matiere_ms/
+      dockerfile: Dockerfile
+    container_name: matiere_ms
+    restart: always
+    environment:
+      DB_HOST: matiere_ms_db
+      DB_NAME: matiere_db
+      DB_USERNAME: david
+      DB_PASSWORD: Passer1234@
+    ports:
+      - "8085:8085"
+    depends_on:
+      matiere_ms_db:
+        condition: service_healthy
+
+  matiere_ms_db:
+    image: mysql
+    container_name: matiere_ms_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: matiere_db
+      MYSQL_USER: david
+      MYSQL_PASSWORD: Passer1234@
+    ports:
+      - "3307:3306"
+    volumes:
+      - matiere_ms_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+
+  classe_ms:
+    #image: mrdav90/classe_ms:1.0
+    build:
+      context: ./backend/classe_ms/
+      dockerfile: Dockerfile
+    container_name: classe_ms
+    restart: always
+    environment:
+      DB_HOST: classe_ms_db
+      DB_NAME: classe_db
+      DB_USERNAME: david
+      DB_PASSWORD: Passer1234@
+    ports:
+      - "8084:8084"
+    depends_on:
+      classe_ms_db:
+        condition: service_healthy
+
+  classe_ms_db:
+    image: mysql
+    container_name: classe_ms_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: classe_db
+      MYSQL_USER: david
+      MYSQL_PASSWORD: Passer1234@
+    ports:
+      - "3308:3306"
+    volumes:
+      - classe_ms_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: mysqladmin ping -h 127.0.0.1 -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+  
+  professeur_ms:
+    #image: mrdav90/professeur_ms:1.0
+    build:
+      context: ./backend/professeur_ms/
+      dockerfile: Dockerfile
+    container_name: professeur_ms
+    restart: always
+    ports:
+      - "8083:8083"
+    depends_on:
+      - professeur_ms_db
+    environment:
+      DATABASE_ACCESS : mongodb://professeur_ms_db:27017/professeur_db
+
+  professeur_ms_db:
+    image: mongo:8
+    container_name: professeur_ms_db
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - professeur_ms_mongodb_data:/data/db
+
+
+
+volumes:
+  etudiant_ms_mysql_data:
+    driver: local
+  matiere_ms_mysql_data:
+    driver: local
+  classe_ms_mysql_data:
+    driver: local
+  professeur_ms_mongodb_data:
+    driver: local
