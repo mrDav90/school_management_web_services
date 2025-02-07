@@ -31,7 +31,7 @@ services:
   etudiant_ms:
     #image: mrdav90/etudiant_ms:1.0
     build:
-      context: ./backend/etudiant_ms/
+      context: ./backend/etudiant_ms
       dockerfile: Dockerfile
     container_name: etudiant_ms
     restart: always
@@ -65,7 +65,7 @@ services:
   matiere_ms:
     #image: mrdav90/matiere_ms:1.0
     build:
-      context: ./backend/matiere_ms/
+      context: ./backend/matiere_ms
       dockerfile: Dockerfile
     container_name: matiere_ms
     restart: always
@@ -99,7 +99,7 @@ services:
   classe_ms:
     #image: mrdav90/classe_ms:1.0
     build:
-      context: ./backend/classe_ms/
+      context: ./backend/classes_ms
       dockerfile: Dockerfile
     container_name: classe_ms
     restart: always
@@ -133,7 +133,7 @@ services:
   professeur_ms:
     #image: mrdav90/professeur_ms:1.0
     build:
-      context: ./backend/professeur_ms/
+      context: ./backend/professeur_ms
       dockerfile: Dockerfile
     container_name: professeur_ms
     restart: always
